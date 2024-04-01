@@ -23,5 +23,19 @@ public class CalculTest {
 	        Calculator calculator = new Calculator();
 	        assertEquals(5, calculator.add(2, 3));
 	    }
+	  
+	  //When adding 2 inputs where one of them (or both) are not integers
+	  //Then display an error message
+	    @Test
+	    public void testAdd_NonIntegerInputs() {
+	        Calculator calculator = new Calculator();
+	        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, () -> calculator.add(2,  2.5));
+	        IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class, () -> calculator.add( 2.5, 2));
+	        IllegalArgumentException exception3 = assertThrows(IllegalArgumentException.class, () -> calculator.add( 2.5, 2.5));
+	        assertEquals("Both inputs must be integers.", exception1.getMessage());
+	        assertEquals("Both inputs must be integers.", exception2.getMessage());
+	        assertEquals("Both inputs must be integers.", exception3.getMessage());
+	    }
+	  
 	
 }
